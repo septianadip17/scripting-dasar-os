@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Fungsi untuk format angka menjadi Rupiah sederhana
 format_rupiah() {
   echo "Rp $1"
 }
@@ -15,7 +14,6 @@ while true; do
   echo "Masukkan Diskon (%): "
   read diskon
 
-  # Validasi input sederhana
   if [[ -z "$nama_produk" || -z "$harga" || -z "$diskon" ]]; then
     echo "Input tidak boleh kosong."
     continue
@@ -31,7 +29,6 @@ while true; do
     continue
   fi
 
-  # Hitung potongan dan harga akhir
   potongan=$(( harga * diskon / 100 ))
   harga_akhir=$(( harga - potongan ))
 
@@ -44,7 +41,6 @@ while true; do
   echo "Harga Akhir    : $(format_rupiah $harga_akhir)"
   echo
 
-  # Tanya apakah mau menghitung lagi
   read -p "Apakah ingin menghitung produk lain? (y/n): " ulang
   if [[ "$ulang" != "y" && "$ulang" != "Y" ]]; then
     echo "Selesai."
