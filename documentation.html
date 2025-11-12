@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>documentation.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="panduan-lengkap-shell-script-sh">Panduan Lengkap Shell Script (.sh)</h1>
+<h2 id="1-apa-itu-file-sh">1. Apa itu File <code>.sh</code></h2>
+<p>File <strong><code>.sh</code></strong> adalah <strong>Shell Script</strong>, yaitu file teks berisi kumpulan perintah yang dijalankan oleh <strong>Shell</strong> (seperti Bash, Zsh, atau Sh) pada sistem operasi <strong>Unix/Linux</strong>.</p>
+<p>Shell Script digunakan untuk <strong>mengotomatiskan pekerjaan</strong> yang biasanya dilakukan manual di terminal.<br>
+Contohnya:</p>
+<ul>
+<li>Menyalin atau memindahkan file otomatis</li>
+<li>Menjalankan backup harian</li>
+<li>Menginstal paket dan konfigurasi sistem</li>
+<li>Men-deploy aplikasi ke server</li>
+</ul>
+<hr>
+<h2 id="2-fungsi-dan-tujuan-shell-script">2. Fungsi dan Tujuan Shell Script</h2>
+<p>Shell Script dibuat agar pekerjaan di sistem berjalan <strong>lebih cepat, konsisten, dan efisien</strong>.<br>
+Berikut fungsi utamanya:</p>
+<ol>
+<li>
+<p><strong>Otomatisasi</strong></p>
+<ul>
+<li>Menjalankan serangkaian perintah tanpa intervensi manual.</li>
+<li>Contoh: backup data harian atau update sistem otomatis.</li>
+</ul>
+</li>
+<li>
+<p><strong>Efisiensi</strong></p>
+<ul>
+<li>Menghemat waktu dengan menulis perintah sekali dan menjalankannya kapan saja.</li>
+</ul>
+</li>
+<li>
+<p><strong>Manajemen Sistem</strong></p>
+<ul>
+<li>Digunakan untuk monitoring server, konfigurasi, dan pengelolaan layanan.</li>
+</ul>
+</li>
+<li>
+<p><strong>Prototyping Cepat</strong></p>
+<ul>
+<li>Berguna membuat alat bantu sederhana sebelum dikembangkan dalam bahasa seperti Go atau Python.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="3-struktur-dasar-file-sh">3. Struktur Dasar File <code>.sh</code></h2>
+<pre class="hljs"><code><div><span class="hljs-meta">#!/bin/bash</span>
+<span class="hljs-comment"># Baris pertama disebut shebang. Ini menentukan interpreter yang digunakan (bash shell).</span>
+
+<span class="hljs-comment"># Komentar</span>
+<span class="hljs-comment"># Ini tidak akan dieksekusi oleh sistem</span>
+
+<span class="hljs-comment"># Contoh sederhana</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"Halo, ini contoh Shell Script"</span>
+
+<span class="hljs-comment"># Variabel</span>
+nama=<span class="hljs-string">"Septian"</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"Nama saya adalah <span class="hljs-variable">$nama</span>"</span>
+
+<span class="hljs-comment"># Percabangan</span>
+<span class="hljs-keyword">if</span> [ <span class="hljs-string">"<span class="hljs-variable">$nama</span>"</span> = <span class="hljs-string">"Septian"</span> ]; <span class="hljs-keyword">then</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">"Halo, <span class="hljs-variable">$nama</span>!"</span>
+<span class="hljs-keyword">fi</span>
+
+<span class="hljs-comment"># Perulangan</span>
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> {1..5}; <span class="hljs-keyword">do</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">"Angka ke-<span class="hljs-variable">$i</span>"</span>
+<span class="hljs-keyword">done</span>
+</div></code></pre>
+<hr>
+<h2 id="4-komponen-dasar-shell-script">4. Komponen Dasar Shell Script</h2>
+<table>
+<thead>
+<tr>
+<th>Komponen</th>
+<th>Fungsi</th>
+<th>Contoh</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Shebang (<code>#!/bin/bash</code>)</strong></td>
+<td>Menentukan interpreter yang digunakan.</td>
+<td><code>#!/bin/bash</code></td>
+</tr>
+<tr>
+<td><strong>Komentar (<code>#</code>)</strong></td>
+<td>Menambahkan catatan yang tidak dijalankan.</td>
+<td><code># Ini komentar</code></td>
+</tr>
+<tr>
+<td><strong>Variabel</strong></td>
+<td>Menyimpan nilai sementara.</td>
+<td><code>nama=&quot;Andi&quot;</code></td>
+</tr>
+<tr>
+<td><strong>Input/Output</strong></td>
+<td>Interaksi dengan pengguna.</td>
+<td><code>read nama</code>, <code>echo $nama</code></td>
+</tr>
+<tr>
+<td><strong>Percabangan (if)</strong></td>
+<td>Mengecek kondisi dan menjalankan perintah sesuai hasilnya.</td>
+<td><code>if [ $x -gt 5 ]; then ... fi</code></td>
+</tr>
+<tr>
+<td><strong>Perulangan (for/while)</strong></td>
+<td>Menjalankan perintah berulang.</td>
+<td><code>for i in {1..10}; do echo $i; done</code></td>
+</tr>
+<tr>
+<td><strong>Fungsi</strong></td>
+<td>Mengelompokkan perintah agar bisa digunakan berulang kali.</td>
+<td><code>function tampil() { echo &quot;Hai&quot;; }</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="5-cara-membuat-dan-menjalankan-script">5. Cara Membuat dan Menjalankan Script</h2>
+<h3 id="langkah-1-buat-file-baru">Langkah 1: Buat file baru</h3>
+<pre class="hljs"><code><div>nano script.sh
+</div></code></pre>
+<h3 id="langkah-2-tambahkan-isi-kode">Langkah 2: Tambahkan isi kode</h3>
+<p>Masukkan kode yang ingin dijalankan.</p>
+<h3 id="langkah-3-simpan-dan-beri-izin-eksekusi">Langkah 3: Simpan dan beri izin eksekusi</h3>
+<pre class="hljs"><code><div>chmod +x script.sh
+</div></code></pre>
+<h3 id="langkah-4-jalankan-script">Langkah 4: Jalankan script</h3>
+<pre class="hljs"><code><div>./script.sh
+</div></code></pre>
+<p>atau</p>
+<pre class="hljs"><code><div>bash script.sh
+</div></code></pre>
+<hr>
+<h2 id="6-contoh-program-lengkap">6. Contoh Program Lengkap</h2>
+<h3 id="program-menampilkan-dan-menghitung-jumlah-nilai-ganjil">Program: Menampilkan dan menghitung jumlah nilai ganjil</h3>
+<pre class="hljs"><code><div><span class="hljs-meta">#!/bin/bash
+</span>
+data=(3 6 7 8 9 11 4 9 5 2 2 4 6 6)
+jumlah_ganjil=0
+
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"Nilai ganjil:"</span>
+
+<span class="hljs-keyword">for</span> angka <span class="hljs-keyword">in</span> <span class="hljs-string">"<span class="hljs-variable">${data[@]}</span>"</span>; <span class="hljs-keyword">do</span>
+  <span class="hljs-keyword">if</span> (( angka % 2 != 0 )); <span class="hljs-keyword">then</span>
+    <span class="hljs-built_in">echo</span> -n <span class="hljs-string">"<span class="hljs-variable">$angka</span> "</span>
+    (( jumlah_ganjil++ ))
+  <span class="hljs-keyword">fi</span>
+<span class="hljs-keyword">done</span>
+
+<span class="hljs-built_in">echo</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"Total jumlah nilai ganjil: <span class="hljs-variable">$jumlah_ganjil</span>"</span>
+</div></code></pre>
+<p><strong>Output:</strong></p>
+<pre class="hljs"><code><div>Nilai ganjil:
+3 7 9 11 9 5 
+Total jumlah nilai ganjil: 6
+</div></code></pre>
+<hr>
+<h2 id="7-konsep-penting-dalam-shell-script">7. Konsep Penting dalam Shell Script</h2>
+<ol>
+<li>
+<p><strong>Komentar (#)</strong><br>
+Digunakan untuk memberi catatan agar script mudah dipahami.</p>
+</li>
+<li>
+<p><strong>Variabel dan Ekspansi</strong><br>
+Gunakan <code>$</code> untuk mengambil nilai variabel.<br>
+Contoh: <code>echo &quot;Nama: $nama&quot;</code></p>
+</li>
+<li>
+<p><strong>Operator Aritmetika dan Logika</strong><br>
+Gunakan <code>(( ))</code> untuk perhitungan angka.<br>
+Gunakan <code>[ ]</code> untuk perbandingan logika.</p>
+</li>
+<li>
+<p><strong>Looping dan Kondisi</strong><br>
+Mengontrol alur program dengan <code>for</code>, <code>while</code>, dan <code>if</code>.</p>
+</li>
+<li>
+<p><strong>Fungsi (function)</strong><br>
+Mempermudah pengelompokan logika agar kode rapi dan reusable.</p>
+</li>
+</ol>
+<hr>
+<h2 id="8-kelebihan-shell-script">8. Kelebihan Shell Script</h2>
+<ul>
+<li>Mudah dipelajari dan ditulis.</li>
+<li>Tidak butuh kompilasi.</li>
+<li>Sudah tersedia di hampir semua sistem Linux/Unix.</li>
+<li>Cocok untuk pekerjaan otomasi server dan DevOps.</li>
+<li>Dapat diintegrasikan dengan cron job untuk menjalankan otomatis.</li>
+</ul>
+<hr>
+<h2 id="9-kekurangan-shell-script">9. Kekurangan Shell Script</h2>
+<ul>
+<li>Kurang efisien untuk program besar atau kompleks.</li>
+<li>Tidak cocok untuk aplikasi dengan tampilan GUI.</li>
+<li>Sulit debug jika script panjang.</li>
+<li>Kurang portabel di sistem non-Unix (contoh Windows tanpa WSL).</li>
+</ul>
+<hr>
+<h2 id="10-contoh-penggunaan-nyata">10. Contoh Penggunaan Nyata</h2>
+<table>
+<thead>
+<tr>
+<th>Kategori</th>
+<th>Contoh Penggunaan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Administrasi Sistem</strong></td>
+<td>Backup file, pembersihan log, monitoring CPU</td>
+</tr>
+<tr>
+<td><strong>DevOps</strong></td>
+<td>Deployment otomatis, konfigurasi server</td>
+</tr>
+<tr>
+<td><strong>Data Processing</strong></td>
+<td>Menggabungkan file CSV, parsing log</td>
+</tr>
+<tr>
+<td><strong>Automasi Harian</strong></td>
+<td>Mengirim laporan otomatis, sinkronisasi folder</td>
+</tr>
+<tr>
+<td><strong>Testing Sederhana</strong></td>
+<td>Menjalankan tes unit secara berulang</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="11-tips-praktis">11. Tips Praktis</h2>
+<ul>
+<li>Gunakan komentar untuk menjelaskan maksud kode.</li>
+<li>Gunakan nama variabel yang jelas.</li>
+<li>Simpan script penting di folder <code>/usr/local/bin</code> agar bisa dijalankan dari mana saja.</li>
+<li>Tambahkan log (<code>echo</code>) untuk memantau proses saat script berjalan.</li>
+<li>Gunakan <code>set -e</code> di awal script untuk menghentikan eksekusi jika ada error.</li>
+</ul>
+<hr>
+<h2 id="12-rangkuman">12. Rangkuman</h2>
+<ul>
+<li>File <code>.sh</code> = kumpulan perintah otomatis untuk Shell.</li>
+<li>Interpreter utama: <strong>Bash (Bourne Again Shell)</strong>.</li>
+<li>Bisa menjalankan logika, perulangan, fungsi, dan operasi file.</li>
+<li>Digunakan luas di bidang <strong>DevOps</strong>, <strong>SysAdmin</strong>, dan <strong>Automation</strong>.</li>
+</ul>
+<hr>
+<h2 id="13-latihan-praktis-dasar">13. Latihan Praktis Dasar</h2>
+<ol>
+<li>
+<p><strong>Membuat Hello World</strong></p>
+<pre class="hljs"><code><div><span class="hljs-meta">#!/bin/bash</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"Halo Dunia!"</span>
+</div></code></pre>
+</li>
+<li>
+<p><strong>Menampilkan Waktu Sekarang</strong></p>
+<pre class="hljs"><code><div><span class="hljs-meta">#!/bin/bash</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"Waktu saat ini: <span class="hljs-variable">$(date)</span>"</span>
+</div></code></pre>
+</li>
+<li>
+<p><strong>Cek File Ada atau Tidak</strong></p>
+<pre class="hljs"><code><div><span class="hljs-meta">#!/bin/bash</span>
+<span class="hljs-keyword">if</span> [ -f <span class="hljs-string">"data.txt"</span> ]; <span class="hljs-keyword">then</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">"File ditemukan"</span>
+<span class="hljs-keyword">else</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">"File tidak ada"</span>
+<span class="hljs-keyword">fi</span>
+</div></code></pre>
+</li>
+<li>
+<p><strong>Menjumlahkan Dua Angka</strong></p>
+<pre class="hljs"><code><div><span class="hljs-meta">#!/bin/bash</span>
+<span class="hljs-built_in">read</span> -p <span class="hljs-string">"Masukkan angka pertama: "</span> a
+<span class="hljs-built_in">read</span> -p <span class="hljs-string">"Masukkan angka kedua: "</span> b
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"Hasil penjumlahan: <span class="hljs-variable">$((a + b)</span>)"</span>
+</div></code></pre>
+</li>
+<li>
+<p><strong>Looping Sederhana</strong></p>
+<pre class="hljs"><code><div><span class="hljs-meta">#!/bin/bash</span>
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> {1..5}; <span class="hljs-keyword">do</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">"Perulangan ke-<span class="hljs-variable">$i</span>"</span>
+<span class="hljs-keyword">done</span>
+</div></code></pre>
+</li>
+</ol>
+<hr>
+<h2 id="14-referensi-dan-bacaan-lanjutan">14. Referensi dan Bacaan Lanjutan</h2>
+<ul>
+<li><a href="https://www.gnu.org/software/bash/manual/">GNU Bash Manual</a></li>
+<li><a href="https://tldp.org/LDP/abs/html/">Advanced Bash-Scripting Guide</a></li>
+<li><a href="https://devhints.io/bash">Bash Cheatsheet by devhints.io</a></li>
+<li><a href="https://www.geeksforgeeks.org/introduction-linux-shell-shell-scripting/">Shell Scripting Tutorial - GeeksforGeeks</a></li>
+</ul>
+
+</body>
+</html>
