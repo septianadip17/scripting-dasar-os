@@ -15,5 +15,6 @@ for angka in "${data[@]}"; do
 done
 
 echo
+echo
 echo "Total jumlah nilai ganjil: $count_ganjil"
 echo "Jumlah semua nilai ganjil (penjumlahan): $sum_ganjil"
