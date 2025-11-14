@@ -5,30 +5,29 @@ format_rupiah() {
 }
 
 while true; do
-  echo "Masukkan Nama Produk: "
-  read nama_produk
+  read -p "Masukkan Nama Produk: " nama_produk
+  read -p "Masukkan Harga Produk: " harga
+  if (( harga <= 0 )); then
+    echo "Harga harus lebih besar dari 0."
+    continue
+  fi
+  read -p "Masukkan Diskon (%): " diskon
 
-  echo "Masukkan Harga Produk: "
-  read harga
 
-  echo "Masukkan Diskon (%): "
-  read diskon
-
+  # validasi input
   if [[ -z "$nama_produk" || -z "$harga" || -z "$diskon" ]]; then
     echo "Input tidak boleh kosong."
     continue
   fi
 
-  if (( harga <= 0 )); then
-    echo "Harga harus lebih besar dari 0."
-    continue
-  fi
 
   if (( diskon < 0 || diskon > 100 )); then
     echo "Diskon harus antara 0–100."
     continue
   fi
 
+
+  # hitung diskon
   potongan=$(( harga * diskon / 100 ))
   harga_akhir=$(( harga - potongan ))
 
